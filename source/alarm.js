@@ -1,26 +1,25 @@
+import Sensor from "./sensor";
 
-Alarm = function() {
+class Alarm {
+	constructor() {
+		this._lowPressureTreshold = 17;
+		this._highPressureTreshold = 21;
+		this._sensor = new Sensor();
+		this._alarmOn = false;
+	}
 
-	this._lowPressureTreshold = 17;
-	this._highPressureTreshold = 21;
-	this._sensor = new Sensor();
-	this._alarmOn = false;
-};
-
-Alarm.prototype = {
-
-	check: function () {
-		
-		var psiPressureValue = this._sensor.popNextPressurePsiValue();
+	check() {
+		let psiPressureValue = this._sensor.popNextPressurePsiValue();
 
 		if (psiPressureValue < this._lowPressureTreshold || this._highPressureTreshold < psiPressureValue)
 		{
 			this._alarmOn = true;
 		}
-	},
-	
-	alarmOn: function () {
-		 return this._alarmOn;
 	}
 
-};
+	alarmOn() {
+		 return this._alarmOn;
+	}
+}
+
+export default Alarm;
