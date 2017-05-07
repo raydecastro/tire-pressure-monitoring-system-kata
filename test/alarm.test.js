@@ -1,22 +1,23 @@
 import { expect } from "chai";
 import Alarm from "../source/alarm";
 import AlarmFake from "./alarmFake";
+import PressureSensor from "../source/pressureSensor";
 
 describe("Tire Pressure Monitoring System", () => {
 	describe("Alarm", () => {
 		it("shall do something", () => {
-			const target = new Alarm();
-			target.check();
+			const alarm = new Alarm(new PressureSensor());
+			alarm.check();
 		});
 
 		it("shall be off during initialization", () => {
-			const alarm = new Alarm();
+			const alarm = new Alarm(new PressureSensor());
 
 			expect(alarm.alarmOn()).to.be.false;
 		});
 
 		it("shall be on when psiPressureValue < _lowPressureTreshold", () => {
-			const alarm = new AlarmFake();
+			const alarm = new AlarmFake(;
 
 			alarm.sensorReading = 16; 
 			alarm.check();

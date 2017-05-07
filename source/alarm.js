@@ -1,10 +1,10 @@
 import PressureSensor from "./pressureSensor";
 
 class Alarm {
-	constructor() {
+	constructor(sensor) {
 		this._lowPressureTreshold = 17;
 		this._highPressureTreshold = 21;
-		this._sensor = new PressureSensor();
+		this._sensor = sensor;
 		this._alarmOn = false;
 	}
 
