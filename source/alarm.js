@@ -6,14 +6,10 @@ class Alarm {
 	}
 
 	check() {
-		if (this._gauge.isOutOfRange(this.getPressure()))
+		if (this._gauge.isOutOfRange(this._sensor.probe()))
 		{
 			this._alarmOn = true;
 		}
-	}
-
-	getPressure() {
-		return this._sensor.probe();
 	}
 
 	alarmOn() {
