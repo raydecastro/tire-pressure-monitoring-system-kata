@@ -17,7 +17,7 @@ describe("Tire Pressure Monitoring System", () => {
 		});
 
 		it("shall be on when psiPressureValue < _lowPressureTreshold", () => {
-			const alarm = new AlarmFake(;
+			const alarm = new AlarmFake();
 
 			alarm.sensorReading = 16; 
 			alarm.check();
