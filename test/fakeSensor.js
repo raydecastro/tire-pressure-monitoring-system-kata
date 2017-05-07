@@ -1,4 +1,4 @@
-class SensorFake {
+class FakeSensor {
     constructor(probeValues) {
         this._probeValues = probeValues;
         this._currentIndex = 0;
@@ -24,4 +24,4 @@ class SensorFake {
     }
 }
 
-export default SensorFake;
+export default FakeSensor;

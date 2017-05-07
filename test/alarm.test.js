@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import Alarm from "../source/alarm";
 import PressureSensor from "../source/pressureSensor";
-import SensorFake from "./sensorFake";
+import FakeSensor from "./fakeSensor";
 import PressureGauge from "../source/pressureGauge";
 import AlarmBuilder from "./alarmBuilder";
 
@@ -32,7 +32,7 @@ describe("Tire Pressure Monitoring System", () => {
 			const pressureValues = [16];
 			const alarm = new AlarmBuilder()
 				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
-				.usingSensorFake(pressureValues)
+				.usingFakeSensor(pressureValues)
 				.build();
 
 			alarm.check();
@@ -44,7 +44,7 @@ describe("Tire Pressure Monitoring System", () => {
 			const pressureValues = [17];
 			const alarm = new AlarmBuilder()
 				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
-				.usingSensorFake(pressureValues)
+				.usingFakeSensor(pressureValues)
 				.build();
 
 			alarm.check();
@@ -56,7 +56,7 @@ describe("Tire Pressure Monitoring System", () => {
 			const pressureValues = [22];
 			const alarm = new AlarmBuilder()
 				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
-				.usingSensorFake(pressureValues)
+				.usingFakeSensor(pressureValues)
 				.build();
 
 			alarm.check();
@@ -68,7 +68,7 @@ describe("Tire Pressure Monitoring System", () => {
 			const pressureValues = [21];
 			const alarm = new AlarmBuilder()
 				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
-				.usingSensorFake(pressureValues)
+				.usingFakeSensor(pressureValues)
 				.build();
 			
 			alarm.check();
@@ -80,7 +80,7 @@ describe("Tire Pressure Monitoring System", () => {
 			const pressureValues = [20];
 			const alarm = new AlarmBuilder()
 				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
-				.usingSensorFake(pressureValues)
+				.usingFakeSensor(pressureValues)
 				.build();
 
 			alarm.check();
@@ -92,7 +92,7 @@ describe("Tire Pressure Monitoring System", () => {
 			const pressureValues = [16, 18];
 			const alarm = new AlarmBuilder()
 				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
-				.usingSensorFake(pressureValues)
+				.usingFakeSensor(pressureValues)
 				.build();
 			
 			alarm.check();
@@ -108,7 +108,7 @@ describe("Tire Pressure Monitoring System", () => {
 			const pressureValues = [22, 18];
 			const alarm = new AlarmBuilder()
 				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
-				.usingSensorFake(pressureValues)
+				.usingFakeSensor(pressureValues)
 				.build();
 
 			alarm.check();

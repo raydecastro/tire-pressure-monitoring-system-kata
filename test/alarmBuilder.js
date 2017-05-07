@@ -1,6 +1,6 @@
 import PressureGauge from "../source/pressureGauge";
 import PressureSensor from "../source/pressureSensor";
-import SensorFake from "./sensorFake";
+import FakeSensor from "./fakeSensor";
 import Alarm from "../source/alarm";
 
 class AlarmBuilder {
@@ -19,8 +19,8 @@ class AlarmBuilder {
         return this;
     }
 
-    usingSensorFake(pressureValues) {
-        this._sensor = new SensorFake(pressureValues);
+    usingFakeSensor(pressureValues) {
+        this._sensor = new FakeSensor(pressureValues);
         return this;
     }
 
