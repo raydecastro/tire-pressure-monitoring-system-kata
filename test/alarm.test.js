@@ -2,6 +2,7 @@ import { expect } from "chai";
 import Alarm from "../source/alarm";
 import AlarmFake from "./alarmFake";
 import PressureSensor from "../source/pressureSensor";
+import SensorFake from "./sensorFake";
 
 describe("Tire Pressure Monitoring System", () => {
 	describe("Alarm", () => {
@@ -17,45 +18,40 @@ describe("Tire Pressure Monitoring System", () => {
 		});
 
 		it("shall be on when psiPressureValue < _lowPressureTreshold", () => {
-			const alarm = new AlarmFake();
+			const alarm = new Alarm(new SensorFake(16));
 
-			alarm.sensorReading = 16; 
 			alarm.check();
 
 			expect(alarm.alarmOn()).to.be.true;
 		});
 
 		it("shall be off when psiPressureValue = _lowPressureTreshold", () => {
-			const alarm = new AlarmFake();
-			
-			alarm.sensorReading = 17; 
+			const alarm = new Alarm(new SensorFake(17));
+
 			alarm.check();
 
 			expect(alarm.alarmOn()).to.be.false;
 		});
 
 		it("shall be on when psiPressureValue > _highPressureTreshold", () => {
-			const alarm = new AlarmFake();
-			
-			alarm.sensorReading = 22; 
+			const alarm = new Alarm(new SensorFake(22));
+
 			alarm.check();
 
 			expect(alarm.alarmOn()).to.be.true;
 		});
 
 		it("shall be on when psiPressureValue = _highPressureTreshold", () => {
-			const alarm = new AlarmFake();
+			const alarm = new Alarm(new SensorFake(21));
 			
-			alarm.sensorReading = 21; 
 			alarm.check();
 
 			expect(alarm.alarmOn()).to.be.false;
 		});
 
 		it("shall be on when psiPressureValue > _lowPressureTreshold and psiPressureValue < _highPressureTreshold", () => {
-			const alarm = new AlarmFake();
-			
-			alarm.sensorReading = 20; 
+			const alarm = new Alarm(new SensorFake(20));
+
 			alarm.check();
 
 			expect(alarm.alarmOn()).to.be.false;
