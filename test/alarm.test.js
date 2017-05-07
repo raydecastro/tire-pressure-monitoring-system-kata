@@ -17,6 +17,72 @@ describe("Tire Pressure Monitoring System", () => {
 
 		it("shall be on when psiPressureValue < _lowPressureTreshold", () => {
 			const alarm = new AlarmFake();
+
+			alarm.sensorReading = 16; 
+			alarm.check();
+
+			expect(alarm.alarmOn()).to.be.true;
+		});
+
+		it("shall be off when psiPressureValue = _lowPressureTreshold", () => {
+			const alarm = new AlarmFake();
+			
+			alarm.sensorReading = 17; 
+			alarm.check();
+
+			expect(alarm.alarmOn()).to.be.false;
+		});
+
+		it("shall be on when psiPressureValue > _highPressureTreshold", () => {
+			const alarm = new AlarmFake();
+			
+			alarm.sensorReading = 22; 
+			alarm.check();
+
+			expect(alarm.alarmOn()).to.be.true;
+		});
+
+		it("shall be on when psiPressureValue = _highPressureTreshold", () => {
+			const alarm = new AlarmFake();
+			
+			alarm.sensorReading = 21; 
+			alarm.check();
+
+			expect(alarm.alarmOn()).to.be.false;
+		});
+
+		it("shall be on when psiPressureValue > _lowPressureTreshold and psiPressureValue < _highPressureTreshold", () => {
+			const alarm = new AlarmFake();
+			
+			alarm.sensorReading = 20; 
+			alarm.check();
+
+			expect(alarm.alarmOn()).to.be.false;
+		});
+
+		it("shall stay on when psiPressureValue < _lowPressureTreshold, and psiPressureValue  becomes > _lowPressureTreshold", () => {
+			const alarm = new AlarmFake();
+			
+			alarm.sensorReading = 16; 
+			alarm.check();
+
+			expect(alarm.alarmOn()).to.be.true;
+
+			alarm.sensorReading = 18; 
+			alarm.check();
+
+			expect(alarm.alarmOn()).to.be.true;
+		});
+
+		it("shall stay on when psiPressureValue > _highPressureTreshold, and psiPressureValue becomes < _highPressureTreshold", () => {
+			const alarm = new AlarmFake();
+			
+			alarm.sensorReading = 22; 
+			alarm.check();
+
+			expect(alarm.alarmOn()).to.be.true;
+
+			alarm.sensorReading = 18; 
 			alarm.check();
 
 			expect(alarm.alarmOn()).to.be.true;

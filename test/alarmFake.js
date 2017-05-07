@@ -1,8 +1,13 @@
 import Alarm from "../source/alarm";
 
 class AlarmFake extends Alarm {
+    constructor() {
+        super();
+        this.sensorReading = 16; 
+    }
+
     getPressure() {
-        return 16;
+        return this.sensorReading;
     }
 }
 
