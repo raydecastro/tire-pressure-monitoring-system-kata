@@ -6,8 +6,7 @@ class Alarm {
 	}
 
 	check() {
-		if (this._gauge.isOutOfRange(this._sensor.probe()))
-		{
+		if (this._gauge.isOutOfRange(this._sensor.probe())) {
 			this._alarmOn = true;
 		}
 	}
