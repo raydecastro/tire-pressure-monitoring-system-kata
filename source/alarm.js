@@ -1,10 +1,10 @@
-import Sensor from "./sensor";
+import PressureSensor from "./pressureSensor";
 
 class Alarm {
 	constructor() {
 		this._lowPressureTreshold = 17;
 		this._highPressureTreshold = 21;
-		this._sensor = new Sensor();
+		this._sensor = new PressureSensor();
 		this._alarmOn = false;
 	}
 
@@ -18,7 +18,7 @@ class Alarm {
 	}
 
 	getPressure() {
-		return this._sensor.popNextPressurePsiValue();
+		return this._sensor.probe();
 	}
 
 	alarmOn() {
