@@ -1,8 +1,5 @@
-import Gauge from "./gauge";
-
-class PressureGauge extends Gauge {
+class PressureGauge {
     constructor(minPressure, maxPressure) {
-        super();
         this._minPressure = minPressure;
         this._maxPressure = maxPressure;
     }

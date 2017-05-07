@@ -1,5 +1,3 @@
-import Sensor from "./sensor";
-
 class PressureSensor {
     probe() {
         return this.popNextPressurePsiValue();
