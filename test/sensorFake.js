@@ -1,13 +1,29 @@
 import Sensor from "../source/sensor";
 
 class SensorFake extends Sensor {
-    constructor(probeValue) {
+    constructor(probeValues) {
         super();
-        this._probeValue = probeValue;
+        this._probeValues = probeValues;
+        this._currentIndex = 0;
     }
 
     probe() {
-        return this._probeValue;
+        return this.getNextProbeValue();
+    }
+
+    getNextProbeValue() {
+        let probeValue = this._probeValues[this._currentIndex];
+        this._currentIndex++; 
+
+        if(this.isCurrentIndexBeyondValidRange()) {
+            this._currentIndex = 0;
+        }
+
+        return probeValue;
+    }
+
+    isCurrentIndexBeyondValidRange() {
+        return this._currentIndex >= this._probeValues.length;
     }
 }
 
