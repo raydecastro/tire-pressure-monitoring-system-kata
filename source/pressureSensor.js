@@ -1,4 +1,6 @@
-class PressureSensor {
+import Sensor from "./interfaces/sensor";
+
+class PressureSensor extends Sensor {
     probe() {
         return this.popNextPressurePsiValue();
     }

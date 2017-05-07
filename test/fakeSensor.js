@@ -1,5 +1,8 @@
-class FakeSensor {
+import Sensor from "../source/interfaces/sensor";
+
+class FakeSensor extends Sensor {
     constructor(probeValues) {
+        super();
         this._probeValues = probeValues;
         this._currentIndex = 0;
     }
