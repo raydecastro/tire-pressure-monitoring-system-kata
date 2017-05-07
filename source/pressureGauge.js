@@ -8,12 +8,15 @@ class PressureGauge extends Gauge {
     }
 
     isOutOfRange(value) {
-        if (value < this._minPressure || 
-            value > this._maxPressure) {
-                return true;
-            }
-		
-        return false;
+        return (this.isBelowMinimum(value) || this.isAboveMaximum(value));
+    }
+
+    isBelowMinimum(value) {
+        return value < this._minPressure;
+    }
+
+    isAboveMaximum(value) {
+        return value > this._maxPressure;
     }
 }
 
