@@ -9,12 +9,16 @@ class Alarm {
 	}
 
 	check() {
-		let psiPressureValue = this._sensor.popNextPressurePsiValue();
+		let psiPressureValue = this.getPressure();
 
 		if (psiPressureValue < this._lowPressureTreshold || this._highPressureTreshold < psiPressureValue)
 		{
 			this._alarmOn = true;
 		}
+	}
+
+	getPressure() {
+		return this._sensor.popNextPressurePsiValue();
 	}
 
 	alarmOn() {
