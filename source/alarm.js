@@ -1,5 +1,3 @@
-import PressureSensor from "./pressureSensor";
-
 class Alarm {
 	constructor(sensor, gauge) {
 		this._sensor = sensor;

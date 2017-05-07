@@ -3,35 +3,37 @@ import Alarm from "../source/alarm";
 import PressureSensor from "../source/pressureSensor";
 import SensorFake from "./sensorFake";
 import PressureGauge from "../source/pressureGauge";
+import AlarmBuilder from "./alarmBuilder";
 
 describe("Tire Pressure Monitoring System", () => {
 	describe("Alarm", () => {
+		const MIN_PRESSURE = 17;
+		const MAX_PRESSURE = 21;
+
 		it("shall do something", () => {
-			const minPressure = 17;
-			const maxPressure = 21;
-			const gauge = new PressureGauge(minPressure, maxPressure);
-			const sensor = new PressureSensor();
-			const alarm = new Alarm(sensor, gauge);
+			const alarm = new AlarmBuilder()
+				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
+				.usingPressureSensor()
+				.build();
+
 			alarm.check();
 		});
 
 		it("shall be off during initialization", () => {
-			const minPressure = 17;
-			const maxPressure = 21;
-			const gauge = new PressureGauge(minPressure, maxPressure);
-			const sensor = new PressureSensor();
-			const alarm = new Alarm(sensor, gauge);
+			const alarm = new AlarmBuilder()
+				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
+				.usingPressureSensor()
+				.build();
 
 			expect(alarm.alarmOn()).to.be.false;
 		});
 
 		it("shall be on when psiPressureValue < _lowPressureTreshold", () => {
 			const pressureValues = [16];
-			const sensor = new SensorFake(pressureValues);
-			const minPressure = 17;
-			const maxPressure = 21;
-			const gauge = new PressureGauge(minPressure, maxPressure);
-			const alarm = new Alarm(sensor, gauge);
+			const alarm = new AlarmBuilder()
+				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
+				.usingSensorFake(pressureValues)
+				.build();
 
 			alarm.check();
 
@@ -40,11 +42,10 @@ describe("Tire Pressure Monitoring System", () => {
 
 		it("shall be off when psiPressureValue = _lowPressureTreshold", () => {
 			const pressureValues = [17];
-			const sensor = new SensorFake(pressureValues);
-			const minPressure = 17;
-			const maxPressure = 21;
-			const gauge = new PressureGauge(minPressure, maxPressure);
-			const alarm = new Alarm(sensor, gauge);
+			const alarm = new AlarmBuilder()
+				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
+				.usingSensorFake(pressureValues)
+				.build();
 
 			alarm.check();
 
@@ -53,11 +54,10 @@ describe("Tire Pressure Monitoring System", () => {
 
 		it("shall be on when psiPressureValue > _highPressureTreshold", () => {
 			const pressureValues = [22];
-			const sensor = new SensorFake(pressureValues);
-			const minPressure = 17;
-			const maxPressure = 21;
-			const gauge = new PressureGauge(minPressure, maxPressure);
-			const alarm = new Alarm(sensor, gauge);
+			const alarm = new AlarmBuilder()
+				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
+				.usingSensorFake(pressureValues)
+				.build();
 
 			alarm.check();
 
@@ -66,11 +66,10 @@ describe("Tire Pressure Monitoring System", () => {
 
 		it("shall be on when psiPressureValue = _highPressureTreshold", () => {
 			const pressureValues = [21];
-			const sensor = new SensorFake(pressureValues);
-			const minPressure = 17;
-			const maxPressure = 21;
-			const gauge = new PressureGauge(minPressure, maxPressure);
-			const alarm = new Alarm(sensor, gauge);
+			const alarm = new AlarmBuilder()
+				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
+				.usingSensorFake(pressureValues)
+				.build();
 			
 			alarm.check();
 
@@ -79,11 +78,10 @@ describe("Tire Pressure Monitoring System", () => {
 
 		it("shall be on when psiPressureValue > _lowPressureTreshold and psiPressureValue < _highPressureTreshold", () => {
 			const pressureValues = [20];
-			const sensor = new SensorFake(pressureValues);
-			const minPressure = 17;
-			const maxPressure = 21;
-			const gauge = new PressureGauge(minPressure, maxPressure);
-			const alarm = new Alarm(sensor, gauge);
+			const alarm = new AlarmBuilder()
+				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
+				.usingSensorFake(pressureValues)
+				.build();
 
 			alarm.check();
 
@@ -92,11 +90,10 @@ describe("Tire Pressure Monitoring System", () => {
 
 		it("shall stay on when psiPressureValue < _lowPressureTreshold, and psiPressureValue  becomes > _lowPressureTreshold", () => {
 			const pressureValues = [16, 18];
-			const sensor = new SensorFake(pressureValues);
-			const minPressure = 17;
-			const maxPressure = 21;
-			const gauge = new PressureGauge(minPressure, maxPressure);
-			const alarm = new Alarm(sensor, gauge);
+			const alarm = new AlarmBuilder()
+				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
+				.usingSensorFake(pressureValues)
+				.build();
 			
 			alarm.check();
 
@@ -109,11 +106,10 @@ describe("Tire Pressure Monitoring System", () => {
 
 		it("shall stay on when psiPressureValue > _highPressureTreshold, and psiPressureValue becomes < _highPressureTreshold", () => {
 			const pressureValues = [22, 18];
-			const sensor = new SensorFake(pressureValues);
-			const minPressure = 17;
-			const maxPressure = 21;
-			const gauge = new PressureGauge(minPressure, maxPressure);
-			const alarm = new Alarm(sensor, gauge);
+			const alarm = new AlarmBuilder()
+				.withPressureGauge(MIN_PRESSURE, MAX_PRESSURE)
+				.usingSensorFake(pressureValues)
+				.build();
 
 			alarm.check();
 
