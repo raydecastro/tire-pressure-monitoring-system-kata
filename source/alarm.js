@@ -1,17 +1,14 @@
 import PressureSensor from "./pressureSensor";
 
 class Alarm {
-	constructor(sensor) {
-		this._lowPressureTreshold = 17;
-		this._highPressureTreshold = 21;
+	constructor(sensor, gauge) {
 		this._sensor = sensor;
+		this._gauge = gauge;
 		this._alarmOn = false;
 	}
 
 	check() {
-		let psiPressureValue = this.getPressure();
-
-		if (psiPressureValue < this._lowPressureTreshold || this._highPressureTreshold < psiPressureValue)
+		if (this._gauge.isOutOfRange(this.getPressure()))
 		{
 			this._alarmOn = true;
 		}
