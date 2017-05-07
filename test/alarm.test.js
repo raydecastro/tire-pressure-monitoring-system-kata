@@ -1,6 +1,5 @@
 import { expect } from "chai";
 import Alarm from "../source/alarm";
-import AlarmFake from "./alarmFake";
 import PressureSensor from "../source/pressureSensor";
 import SensorFake from "./sensorFake";
 
