@@ -25,7 +25,7 @@ describe("Tire Pressure Monitoring System", () => {
 				.usingPressureSensor()
 				.build();
 
-			expect(alarm.alarmOn()).to.be.false;
+			expect(alarm.isOn()).to.be.false;
 		});
 
 		it("shall be on when psiPressureValue < _lowPressureTreshold", () => {
@@ -37,7 +37,7 @@ describe("Tire Pressure Monitoring System", () => {
 
 			alarm.check();
 
-			expect(alarm.alarmOn()).to.be.true;
+			expect(alarm.isOn()).to.be.true;
 		});
 
 		it("shall be off when psiPressureValue = _lowPressureTreshold", () => {
@@ -49,7 +49,7 @@ describe("Tire Pressure Monitoring System", () => {
 
 			alarm.check();
 
-			expect(alarm.alarmOn()).to.be.false;
+			expect(alarm.isOn()).to.be.false;
 		});
 
 		it("shall be on when psiPressureValue > _highPressureTreshold", () => {
@@ -61,7 +61,7 @@ describe("Tire Pressure Monitoring System", () => {
 
 			alarm.check();
 
-			expect(alarm.alarmOn()).to.be.true;
+			expect(alarm.isOn()).to.be.true;
 		});
 
 		it("shall be on when psiPressureValue = _highPressureTreshold", () => {
@@ -73,7 +73,7 @@ describe("Tire Pressure Monitoring System", () => {
 			
 			alarm.check();
 
-			expect(alarm.alarmOn()).to.be.false;
+			expect(alarm.isOn()).to.be.false;
 		});
 
 		it("shall be on when psiPressureValue > _lowPressureTreshold and psiPressureValue < _highPressureTreshold", () => {
@@ -85,7 +85,7 @@ describe("Tire Pressure Monitoring System", () => {
 
 			alarm.check();
 
-			expect(alarm.alarmOn()).to.be.false;
+			expect(alarm.isOn()).to.be.false;
 		});
 
 		it("shall stay on when psiPressureValue < _lowPressureTreshold, and psiPressureValue  becomes > _lowPressureTreshold", () => {
@@ -97,11 +97,11 @@ describe("Tire Pressure Monitoring System", () => {
 			
 			alarm.check();
 
-			expect(alarm.alarmOn()).to.be.true;
+			expect(alarm.isOn()).to.be.true;
 
 			alarm.check();
 
-			expect(alarm.alarmOn()).to.be.true;
+			expect(alarm.isOn()).to.be.true;
 		});
 
 		it("shall stay on when psiPressureValue > _highPressureTreshold, and psiPressureValue becomes < _highPressureTreshold", () => {
@@ -113,11 +113,11 @@ describe("Tire Pressure Monitoring System", () => {
 
 			alarm.check();
 
-			expect(alarm.alarmOn()).to.be.true;
+			expect(alarm.isOn()).to.be.true;
 
 			alarm.check();
 
-			expect(alarm.alarmOn()).to.be.true;
+			expect(alarm.isOn()).to.be.true;
 		});
 	});
 });
